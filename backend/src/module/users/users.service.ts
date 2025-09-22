@@ -37,7 +37,7 @@ export class UsersService {
     return this.userRepository.findOneAndUpdate({ _id }, { $set: updateData });
   }
 
-  remove(_id: string) {
-    return `This action removes a #${_id} user`;
+  async remove(_id: string) {
+    return this.userRepository.findOneAndDelete({ _id });
   }
 }
