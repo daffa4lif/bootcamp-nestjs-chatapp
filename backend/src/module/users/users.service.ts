@@ -12,6 +12,13 @@ export class UsersService {
     return bcrypt.hash(password, 10);
   }
 
+  private async compateHash(
+    password: string,
+    hashPassword: string,
+  ): Promise<boolean> {
+    return bcrypt.compare(password, hashPassword);
+  }
+
   async create(createUserInput: CreateUserInput) {
     return this.userRepository.create({
       ...createUserInput,
