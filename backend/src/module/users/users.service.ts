@@ -28,13 +28,16 @@ export class UsersService {
   }
 
   async update(_id: string, updateUserInput: UpdateUserInput) {
-    const updateData = { ...updateUserInput };
-
     if (updateUserInput.password) {
-      updateData.password = await this.hashPassword(updateUserInput.password);
+      updateUserInput.password = await this.hashPassword(
+        updateUserInput.password,
+      );
     }
 
-    return this.userRepository.findOneAndUpdate({ _id }, { $set: updateData });
+    return this.userRepository.findOneAndUpdate(
+      { _id },
+      { $set: { ...updateUserInput } },
+    );
   }
 
   async remove(_id: string) {
