@@ -8,6 +8,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
   const configService = app.get(ConfigService);
 
+  app.enableCors({
+    origin: ['http://localhost:5173'],
+  });
+
   app.useGlobalPipes(new ValidationPipe());
 
   app.useLogger(app.get(Logger));
