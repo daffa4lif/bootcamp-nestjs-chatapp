@@ -3,15 +3,15 @@ import { gql } from "@apollo/client";
 import type { User } from "../models/user";
 
 interface CreateUserInput {
-  createUserData: {
+  createUserInput: {
     email: string;
     password: string;
   };
 }
 
 const CREATE_USER = gql`
-  mutation CreateUser($createUserData: CreateUserInput!) {
-    createUser(createUserData: $createUserData) {
+  mutation CreateUser($createUserInput: CreateUserInput!) {
+    createUser(createUserInput: $createUserInput) {
       _id
       email
     }
