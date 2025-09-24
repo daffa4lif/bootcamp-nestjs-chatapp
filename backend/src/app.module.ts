@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { UsersModule } from './module/users/users.module';
 import { LoggerModule } from 'nestjs-pino';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { LoggerModule } from 'nestjs-pino';
       },
       inject: [ConfigService],
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
